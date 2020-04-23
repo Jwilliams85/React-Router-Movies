@@ -1,14 +1,18 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { useParams, Route, useRouteMatch, Link } from 'react-router-dom';
+import MovieCard from './MovieCard';
+import MovieList from './MovieList';
+
 
 const Movie = (props) => {
   const [movie, setMovie] = useState();
  
   useEffect(() => {
-    const id = 1;
+    const id = props.items.find(Movie => Movie.id === Number(useParams.itemID));
     // change ^^^ that line and grab the id from the URL
     // You will NEED to add a dependency array to this effect hook
-
+    const {path, url} = useRouteMatch ();
        axios
         .get(`http://localhost:5000/api/movies/${id}`)
         .then(response => {
@@ -50,7 +54,17 @@ const Movie = (props) => {
         ))}
       </div>
       <div className="save-button">Save</div>
+    <Link to={`/movielist ${id.id}`}>Movie List</Link>
+    <Route path={`/movie-card/:itemID/moviecard`}>
+      <MovieCard Movie={movie}/>
+    </Route>
+    <Route path={`/movie-list/:itemID/movielist`}>
+      <MovieList Movie={movie}/>
+    </Route>
     </div>
+   
+   
+    
   );
 }
 

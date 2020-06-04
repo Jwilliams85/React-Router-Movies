@@ -30,20 +30,14 @@ const App = () => {
   return (
   <div>
    <Switch>
-     <Route path="/movie/:itemID"/>
-     <Movie items= {savedList} />
-    <Route path="/saved-list" >
+     <Route path="/movie/:id"><Movie items= {savedList}/></Route>
+   
+    <Route path="/saved-list"><SavedList list={savedList}/> </Route>
     
-         <SavedList list={savedList} />
-      <div>Replace this Div with your Routes</div>
-    </Route>
-
-      <Route path="/movie-list" >
+    <Route path="/"><MovieList movies={movieList}/></Route>
     
-      <MovieList movies={movieList} />
-     
-      </Route>
-      </Switch> 
+  </Switch> 
+  
       </div>
   );
 };

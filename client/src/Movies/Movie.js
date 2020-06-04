@@ -8,16 +8,16 @@ import MovieList from './MovieList';
 const Movie = (props) => {
   const [movie, setMovie] = useState();
  
-  const id = props.items.find(Movie => Movie.id === Number(useParams.itemID));
+  const id = useParams ()
   const {path, url} = useRouteMatch ();
  //path: "/movie-card/:itemID"
     //url: ""
-    
+
   useEffect(() => {
 
     // change ^^^ that line and grab the id from the URL
     // You will NEED to add a dependency array to this effect hook
-  
+  console.log (id)
    
        axios
         .get(`http://localhost:5000/api/movies/${id}`)
@@ -28,7 +28,7 @@ const Movie = (props) => {
           console.error(error);
         });
 
-  },[]);
+  },[id]);
   
   // Uncomment this only when you have moved on to the stretch goals
   // const saveMovie = () => {
@@ -60,11 +60,12 @@ const Movie = (props) => {
         ))}
       </div>
       <div className="save-button">Save</div>
-     <Link to={`${url}/movielist`}>Movie List</Link> 
-    <Route path={`${path}/moviecard`}>
-      <MovieCard Movie={movie}/>
-    </Route>
-    <Route path={`${path}/movielist`}>
+     {/* <Link to={`${url}/movielist`}>Movie List</Link>  */}
+     <Link to={`/movies/${id.id}`}>Movie List<MovieCard Movie={movie}/></Link>  
+    
+    <Route path={`${path}/moviecard`}> </Route>
+      
+     <Route path={`${path}/movielist`}>
       <MovieList Movie={movie}/>
     </Route>
     </div>

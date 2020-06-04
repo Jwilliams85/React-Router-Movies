@@ -6,8 +6,8 @@ import MovieList from './Movies/MovieList';
 import Movie from './Movies/Movie';
 
 const App = () => {
-  const [savedList, setSavedList] = useState([]);
   const [movieList, setMovieList] = useState([]);
+  const [savedList, setSavedList] = useState([]);
 
   useEffect(() => {
     const getMovies = () => {
@@ -40,7 +40,7 @@ const App = () => {
 
       <Route path="/movie-list" >
     
-      <MovieList list={movieList} />
+      <MovieList movies={movieList} />
      
       </Route>
       </Switch> 

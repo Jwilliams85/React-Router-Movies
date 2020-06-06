@@ -20,7 +20,7 @@ const Movie = (props) => {
   console.log (id)
    
        axios
-        .get(`http://localhost:5000/api/movies/${id}`)
+        .get(`http://localhost:5000/api/movies/${id.id}`)
         .then(response => {
           setMovie(response.data);
         })
@@ -60,14 +60,7 @@ const Movie = (props) => {
         ))}
       </div>
       <div className="save-button">Save</div>
-     {/* <Link to={`${url}/movielist`}>Movie List</Link>  */}
-     <Link to={`/movies/${id.id}`}>Movie List<MovieCard Movie={movie}/></Link>  
-    
-    <Route path={`${path}/moviecard`}> </Route>
-      
-     <Route path={`${path}/movielist`}>
-      <MovieList Movie={movie}/>
-    </Route>
+     
     </div>
    
    
